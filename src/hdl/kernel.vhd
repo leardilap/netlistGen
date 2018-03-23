@@ -63,11 +63,20 @@ constant c : std_logic_vector (47 downto 0) := std_logic_vector(to_signed(intege
 signal a : std_logic_vector(26 downto 0) := (others => '0');
 signal b : std_logic_vector(17 downto 0) := (others => '0');
 
+component op_mult 
+  port (
+    CLK : IN STD_LOGIC;
+    A : IN STD_LOGIC_VECTOR(26 DOWNTO 0);
+    B : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+    C : IN STD_LOGIC_VECTOR(47 DOWNTO 0);
+    P : OUT STD_LOGIC_VECTOR(47 DOWNTO 0)
+  );
+end component;
 
 begin
 
 
-op_mult_inst : entity work.op_mult 
+op_mult_inst : op_mult 
 port map (
     clk => clk,
     a => a,
