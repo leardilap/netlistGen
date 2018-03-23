@@ -1,3 +1,3 @@
 #!/bin/bash
 
-vivado -nolog -nojournal netlistGen/netlistGen.xpr &
+vivado -nolog -nojournal netlistGen/netlistGen.xpr
