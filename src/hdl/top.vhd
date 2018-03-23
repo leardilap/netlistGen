@@ -63,9 +63,25 @@ signal dout_kernel : std_logic_vector (71 downto 0) := (others => '0');
 signal dout_kernel_valid : std_logic := '0';
 signal full_kernel : std_logic := '0';
 
+component fifo72x512
+port (
+    empty : out STD_LOGIC;
+    full : out STD_LOGIC;
+    rd_rst_busy : out STD_LOGIC;
+    wr_rst_busy : out STD_LOGIC;
+    dout : out STD_LOGIC_VECTOR ( 71 downto 0 );
+    valid : out STD_LOGIC;
+    rd_en : in STD_LOGIC;
+    clk : in STD_LOGIC;
+    srst : in STD_LOGIC;
+    wr_en : in STD_LOGIC;
+    din : in STD_LOGIC_VECTOR ( 71 downto 0 )
+);
+end component;
+  
 begin
 
-in_fifo : entity work.fifo72x512 
+in_fifo : fifo72x512 
 port map(
     clk => clk,
     srst => srst,
@@ -93,7 +109,7 @@ port map(
   dout_valid => dout_kernel_valid
 );
 
-out_fifo : entity work.fifo72x512
+out_fifo : fifo72x512
 port map(
     clk => clk,
     srst => srst,
